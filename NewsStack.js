@@ -19,16 +19,20 @@ export default function NewsStack() {
 
   const renderItem = ({ item }) => (
     <View style={styles.container}>
+      <Text style={styles.title}>Published at {item.publishedAt}</Text>
       <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.title}>by {item.author}</Text>
       <Image
-          style={{ width: 200, height: 200 }}
-          source={
-            item.urlToImage === null
-              ? require("./no-image-found.jpg")
-              : { uri: `${item.urlToImage}` }
-          }
-        />
+        style={styles.image}
+        source={
+          item.urlToImage === null
+            ? require("./no-image-found.jpg")
+            : { uri: `${item.urlToImage}` }
+        }
+      />
+      <Text style={styles.description}>{item.description}</Text>
+      <Text style={styles.title}>
+        by {item.author === null ? "(Author Not Found)" : item.author}
+      </Text>
     </View>
   );
 
@@ -51,10 +55,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderColor: "black",
     borderWidth: 3,
+    padding: 5
+    // flexDirection: "row",
   },
   title: {
     fontSize: 13,
     fontWeight: "bold",
     marginBottom: 5,
+  },
+  description: {
+    fontWeight: "normal",
+  },
+  image: {
+    width: 100,
+    height: 100,
   },
 });
