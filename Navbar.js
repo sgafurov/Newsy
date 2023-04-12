@@ -1,11 +1,15 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 
 export default function Navbar() {
   return (
     <View style={styles.container}>
+      <Image
+        style={{ width: 50, height: 50 }}
+        source={require("./newsy-logo.png")}
+      />
       <Text style={styles.title}>NEWSY</Text>
-      <Text>Insert Time and Date Here</Text>
+      <Text>{new Date().toLocaleString()}</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -24,6 +28,6 @@ const styles = StyleSheet.create({
     color: "red",
     marginBottom: 5,
     borderColor: "black",
-    borderWidth: 3,
+    borderWidth: 1,
   },
 });
