@@ -18,13 +18,17 @@ export default function NewsStack() {
   }, []);
 
   const renderItem = ({ item }) => (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.title}>by {item.author}</Text>
       <Image
-        style={{ width: 200, height: 200 }}
-        source={{ uri: item.urlToImage }}>
-      </Image>
+          style={{ width: 200, height: 200 }}
+          source={
+            item.urlToImage === null
+              ? require("./no-image-found.jpg")
+              : { uri: `${item.urlToImage}` }
+          }
+        />
     </View>
   );
 
@@ -42,15 +46,15 @@ export default function NewsStack() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "#fff",
-    // alignItems: "center",
-    // justifyContent: "center",
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "black",
+    borderWidth: 3,
   },
   title: {
     fontSize: 13,
     fontWeight: "bold",
     marginBottom: 5,
-    borderColor: "black",
-    borderWidth: 3,
   },
 });
