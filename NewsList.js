@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
@@ -8,9 +7,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import NewsArticle from "./NewsArticle";
+import axios from "axios";
 
 export default function NewsList({ navigation }) {
   const Stack = createNativeStackNavigator();
@@ -18,21 +16,21 @@ export default function NewsList({ navigation }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(
-      "https://newsapi.org/v2/top-headlines?country=us&apiKey=03df756f2234440cac2aa0b9688b3ca4"
-    )
-      .then((response) => response.json())
-      .then((json) => {
-        setData(json.articles);
-        console.log(json.articles);
+    axios
+      .get(
+        "https://newsapi.org/v2/top-headlines?country=us&apiKey=03df756f2234440cac2aa0b9688b3ca4"
+      )
+      .then((response) => {
+        setData(response.data.articles);
+        console.log(response.data.articles);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.log(error));
   }, []);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('NewsArticle', { item: item });
+        navigation.navigate("NewsArticle", { item: item });
         console.log("View clicked!");
       }}
     >

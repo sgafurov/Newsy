@@ -14,7 +14,7 @@ export default function NewsArticle({ route, navigation }) {
 
   useEffect(() => {
     setData(item);
-    console.log("hi")
+    console.log("hi");
   });
 
   return (
@@ -34,6 +34,7 @@ export default function NewsArticle({ route, navigation }) {
         <Text style={styles.title}>
           by {data.author === null ? "(Author Not Found)" : data.author}
         </Text>
+        <Text>Add full content here</Text>
         <Button title="Go back" onPress={() => navigation.goBack()} />
       </View>
     </View>
@@ -49,7 +50,6 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 3,
     padding: 5,
-    // flexDirection: "row",
   },
   title: {
     fontSize: 13,
